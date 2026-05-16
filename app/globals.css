@@ -39,6 +39,12 @@
   box-sizing: border-box;
 }
 
+@property --rail-train-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
 html {
   background: var(--background);
 }
@@ -100,6 +106,88 @@ textarea {
   font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
+}
+
+.social-rail-shell {
+  position: relative;
+  isolation: isolate;
+  border-color: rgba(15, 118, 110, 0.28);
+  box-shadow:
+    0 20px 70px rgba(2, 6, 23, 0.1),
+    0 0 18px rgba(45, 212, 191, 0.14);
+  animation: social-rail-float 5.6s infinite;
+}
+
+.social-rail-shell::before,
+.social-rail-shell::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--rail-train-angle),
+    transparent 0deg,
+    transparent 38deg,
+    rgba(20, 184, 166, 0.12) 48deg,
+    rgba(45, 212, 191, 0.95) 56deg,
+    rgba(255, 255, 255, 0.98) 62deg,
+    rgba(96, 165, 250, 0.82) 70deg,
+    rgba(20, 184, 166, 0.12) 82deg,
+    transparent 96deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: social-rail-train 3.8s linear infinite;
+}
+
+.social-rail-shell::before {
+  inset: -2px;
+  z-index: 1;
+}
+
+.social-rail-shell::after {
+  inset: -5px;
+  z-index: -1;
+  filter: blur(7px);
+  opacity: 0.68;
+}
+
+.dark .social-rail-shell {
+  border-color: rgba(45, 212, 191, 0.34);
+  box-shadow:
+    0 24px 90px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 0 22px rgba(45, 212, 191, 0.18);
+}
+
+@keyframes social-rail-train {
+  to {
+    --rail-train-angle: 360deg;
+  }
+}
+
+@keyframes social-rail-float {
+  0% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.32, 0, 0.22, 1);
+  }
+
+  68% {
+    transform: translateY(-14px);
+    animation-timing-function: cubic-bezier(0.75, 0, 0.92, 0.72);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .focus-ring {

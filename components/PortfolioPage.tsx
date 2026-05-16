@@ -38,7 +38,7 @@ export function PortfolioPage() {
       <ScrollProgress />
       <Navbar />
       <SocialRail />
-      <main className="relative isolate overflow-hidden md:pl-12 xl:pl-14 2xl:pl-0">
+      <main className="relative isolate overflow-hidden lg:pl-12 xl:pl-14 2xl:pl-0">
         <div aria-hidden="true" className="premium-grid pointer-events-none fixed inset-0 -z-10" />
         <Hero />
         <SectionWrapper
@@ -65,8 +65,8 @@ export function PortfolioPage() {
         <SectionWrapper
           id="projects"
           kicker="Projects"
-          title="Selected builds with product polish."
-          intro="Each project card is designed to show context quickly: what it does, what it uses, and where to inspect it."
+          title="Featured projects."
+          intro="Each card shows the project, tools, and demo link."
         >
           <div className="grid gap-6 lg:grid-cols-3">
             {portfolioData.projects.map((project, index) => (
@@ -141,6 +141,7 @@ function Hero() {
           >
             <a
               href={personal.resumeUrl}
+              target="_blank"
               download
               className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 font-extrabold text-white shadow-xl shadow-slate-950/15 transition hover:-translate-y-1 hover:bg-teal-700 dark:bg-white dark:text-slate-950 dark:hover:bg-teal-200 px-6 py-4 text-sm"
             >
@@ -176,6 +177,7 @@ function Hero() {
                 src={personal.avatar}
                 alt={`${personal.name} avatar placeholder`}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 priority
                 className="object-cover"
               />
@@ -272,8 +274,8 @@ function Contact() {
     <SectionWrapper
       id="contact"
       kicker="Contact"
-      title="Let’s build something worth using."
-      intro="Share a role, project brief, or collaboration idea. The form is ready for your preferred backend or form service."
+      title="Let's build something worth using."
+      intro="Share a role, project brief or collaboration idea."
     >
       <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
         <div className="glass-panel rounded-[30px] p-6 sm:p-8">

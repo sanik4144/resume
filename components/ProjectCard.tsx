@@ -16,13 +16,13 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
       transition={{ duration: 0.58, delay: index * 0.08 }}
       whileHover={{ y: -8 }}
     >
-      <div className="relative aspect-[16/10] overflow-hidden">
+      <div className="relative overflow-hidden">
         <Image
           src={project.image}
           alt={`${project.title} project preview`}
-          fill
-          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className="object-cover transition duration-700 group-hover:scale-105"
+          width={440}
+          height={600}
+          className="object-cover rounded-[30px] p-8 transition duration-700 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-transparent to-transparent opacity-0 transition group-hover:opacity-100" />
       </div>
@@ -30,7 +30,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
         <h3 className="font-display text-2xl font-semibold text-slate-950 dark:text-white">
           {project.title}
         </h3>
-        <p className="mt-3 min-h-24 leading-7 text-slate-600 dark:text-slate-300">
+        <p className="mt-3 min-h-24 text-justify leading-7 text-slate-600 dark:text-slate-300">
           {project.description}
         </p>
         <div className="mt-5 flex flex-wrap gap-2">

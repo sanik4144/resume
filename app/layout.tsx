@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     title: `${personal.name} | ${personal.title}`,
     description: personal.tagline,
     url: "https://example.com",
-    siteName: "Alex Morgan Portfolio",
+    siteName: "Saifullah Anik Portfolio",
     locale: "en_US",
     type: "website",
   },

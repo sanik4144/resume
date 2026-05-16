@@ -49,7 +49,7 @@ export function ContactForm() {
             name="message"
             rows={5}
             className="focus-ring resize-none rounded-2xl border border-slate-950/10 bg-white/70 px-4 py-3 font-medium text-slate-950 transition placeholder:text-slate-400 dark:border-white/10 dark:bg-white/5 dark:text-white"
-            placeholder="Tell me about the role, project, or idea."
+            placeholder="Tell me about the role, project or idea."
           />
         </label>
       </div>
@@ -62,7 +62,7 @@ export function ContactForm() {
       </button>
       {sent ? (
         <p className="mt-4 text-center text-sm font-semibold text-teal-700 dark:text-teal-200">
-          Thanks. This demo form is ready to connect to your backend or form service.
+          Thanks. I will get back to you soon.
         </p>
       ) : null}
     </motion.form>
