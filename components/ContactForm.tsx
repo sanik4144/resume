@@ -6,11 +6,48 @@ import { FormEvent, useState } from "react";
 
 export function ContactForm() {
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState("");
+  const [sending, setSending] = useState(false);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSent(true);
-    event.currentTarget.reset();
+    setError("");
+    setSent(false);
+    setSending(true);
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          message: formData.get("message"),
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message.");
+      }
+
+      setSent(true);
+      form.reset();
+    } catch (requestError) {
+      setError(
+        requestError instanceof Error
+          ? requestError.message
+          : "Failed to send message. Please try again.",
+      );
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -55,14 +92,20 @@ export function ContactForm() {
       </div>
       <button
         type="submit"
-        className="focus-ring mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-teal-700 px-6 py-4 text-sm font-extrabold text-white shadow-lg shadow-teal-700/20 transition hover:-translate-y-1 hover:bg-teal-800 dark:bg-teal-400 dark:text-slate-950 dark:hover:bg-teal-300"
+        disabled={sending}
+        className="focus-ring mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-teal-700 px-6 py-4 text-sm font-extrabold text-white shadow-lg shadow-teal-700/20 transition hover:-translate-y-1 hover:bg-teal-800 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0 dark:bg-teal-400 dark:text-slate-950 dark:hover:bg-teal-300"
       >
         <Send className="h-4 w-4" />
-        Send Message
+        {sending ? "Sending..." : "Send Message"}
       </button>
       {sent ? (
         <p className="mt-4 text-center text-sm font-semibold text-teal-700 dark:text-teal-200">
           Thanks. I will get back to you soon.
+        </p>
+      ) : null}
+      {error ? (
+        <p className="mt-4 text-center text-sm font-semibold text-red-600 dark:text-red-300">
+          {error}
         </p>
       ) : null}
     </motion.form>
