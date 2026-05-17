@@ -24,6 +24,13 @@ export type Project = {
   techStack: string[];
   liveUrl: string;
   githubUrl: string;
+  credentials?: ProjectCredential[];
+};
+
+export type ProjectCredential = {
+  role: string;
+  userid: string;
+  password: string;
 };
 
 export const portfolioData = {
@@ -54,6 +61,7 @@ export const portfolioData = {
     { label: "Skills", href: "#skills" },
     { label: "Projects", href: "#projects" },
     { label: "Education", href: "#education" },
+    { label: "Research", href: "#research-works" },
     { label: "Contact", href: "#contact" },
   ] satisfies NavItem[],
   education: [
@@ -82,6 +90,35 @@ export const portfolioData = {
       ],
     },
   ] satisfies TimelineItem[],
+  researchWorks: [
+    {
+      title: "Applied Software Research",
+      description:
+        "Research-focused engineering work around practical software systems, data workflows, and digital tools for institutional operations at Bangladesh Rice Research Institute.",
+      image: "/portfolio/lms.png",
+      techStack: ["Research", "Dashboards", "Data Workflows", "Internal Tools"],
+      liveUrl: "",
+      githubUrl: "",
+    },
+    {
+      title: "Academic Research & Technical Writing",
+      description:
+        "Academic research practice connected to computer science coursework, project documentation, literature review, and software engineering analysis.",
+      image: "/portfolio/resume_analyzer.png",
+      techStack: ["Literature Review", "Problem Framing", "Technical Reports"],
+      liveUrl: "",
+      githubUrl: "",
+    },
+    {
+      title: "Software Requirements Analysis",
+      description:
+        "Explored requirement gathering, implementation trade-offs, and structured documentation for project-based academic evaluation.",
+      image: "/portfolio/materials.png",
+      techStack: ["Requirements", "Documentation", "Software Engineering"],
+      liveUrl: "",
+      githubUrl: "",
+    },
+  ] satisfies Project[],
   skills: [
     {
       category: "Frontend",
@@ -149,6 +186,23 @@ export const portfolioData = {
       techStack: ["React.js", "Node.js", "Express.js", "MySQL", "Sequelize"],
       liveUrl: "https://quix-frontend.vercel.app/",
       githubUrl: "https://github.com/sanik4144/quix",
+      credentials: [
+        {
+          role: "Admin",
+          userid: "admin@quix.com",
+          password: "admin123",
+        },
+        {
+          role: "Instructor",
+          userid: "instructor1@quix.com",
+          password: "instructor123",
+        },
+        {
+          role: "Student",
+          userid: "student1@quix.com",
+          password: "student123",
+        },
+      ],
     },
     {
       title: "Materials",

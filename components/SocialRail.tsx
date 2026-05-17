@@ -26,9 +26,9 @@ export function SocialRail() {
   return (
     <aside
       aria-label="Social links"
-      className="fixed inset-x-0 top-4 z-50 px-4 lg:inset-x-auto lg:left-2 lg:top-1/2 lg:z-30 lg:-translate-y-1/2 lg:px-0 xl:left-3 2xl:left-4"
+      className="pointer-events-none fixed inset-x-0 top-4 z-50 px-4 lg:inset-x-auto lg:left-2 lg:top-1/2 lg:z-30 lg:-translate-y-1/2 lg:px-0 xl:left-3 2xl:left-4"
     >
-      <div className="social-rail-shell glass-panel mx-auto flex w-fit items-center gap-2 rounded-full p-1.5 lg:mx-0 lg:flex-col">
+      <div className="social-rail-shell glass-panel pointer-events-auto mx-auto flex w-fit items-center gap-2 rounded-full p-1.5 lg:mx-0 lg:flex-col">
         {links.map(({ label, href }) => (
           <SocialIcon
             key={label}

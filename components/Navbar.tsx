@@ -31,8 +31,15 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-4 z-50 hidden px-4 lg:block">
-      <nav className="glass-panel mx-auto flex max-w-7xl items-center justify-between rounded-full px-3 py-2">
+    <>
+      <div className="fixed right-4 top-4 z-[80] lg:hidden">
+        <div className="scale-90 opacity-90 shadow-lg shadow-slate-950/10">
+          <ThemeToggle />
+        </div>
+      </div>
+
+      <header className="fixed inset-x-0 top-4 z-50 hidden px-4 lg:block">
+        <nav className="glass-panel mx-auto flex max-w-7xl items-center justify-between rounded-full px-3 py-2">
         <a
           href="#hero"
           className="focus-ring group flex items-center gap-3 rounded-full px-2 py-1"
@@ -85,29 +92,30 @@ export function Navbar() {
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
-      </nav>
+        </nav>
 
-      <AnimatePresence>
-        {open ? (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="glass-panel mx-auto mt-3 grid max-w-sm gap-1 rounded-3xl p-3 lg:hidden"
-          >
-            {portfolioData.nav.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="focus-ring rounded-2xl px-4 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-950/5 dark:text-slate-200 dark:hover:bg-white/10"
-              >
-                {item.label}
-              </a>
-            ))}
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
-    </header>
+        <AnimatePresence>
+          {open ? (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="glass-panel mx-auto mt-3 grid max-w-sm gap-1 rounded-3xl p-3 lg:hidden"
+            >
+              {portfolioData.nav.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="focus-ring rounded-2xl px-4 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-950/5 dark:text-slate-200 dark:hover:bg-white/10"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+      </header>
+    </>
   );
 }

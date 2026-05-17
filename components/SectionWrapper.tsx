@@ -37,7 +37,7 @@ export function SectionWrapper({
   return (
     <motion.section
       id={id}
-      className="relative scroll-mt-28 px-5 py-20 sm:px-8 lg:px-10"
+      className="relative scroll-mt-28 px-5 py-4 sm:px-8 lg:px-10"
       initial={{ opacity: 0, y: 34 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-120px" }}

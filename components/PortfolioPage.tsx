@@ -83,6 +83,22 @@ export function PortfolioPage() {
         >
           <Timeline items={portfolioData.education} />
         </SectionWrapper>
+        <SectionWrapper
+          id="research-works"
+          kicker="Research Works"
+          title="Research & Technical Exploration"
+          intro="Research-focused work, technical writing, and applied software exploration presented as compact project cards."
+        >
+          <div className="grid gap-6 lg:grid-cols-3">
+            {portfolioData.researchWorks.map((researchWork, index) => (
+              <ProjectCard
+                key={researchWork.title}
+                project={researchWork}
+                index={index}
+              />
+            ))}
+          </div>
+        </SectionWrapper>
         {/* <Achievements /> */}
         <Contact />
       </main>
