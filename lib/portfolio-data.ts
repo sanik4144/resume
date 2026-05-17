@@ -222,6 +222,22 @@ export const portfolioData = {
       liveUrl: "https://resume-analyzer-frontend-opal.vercel.app/",
       githubUrl: "https://github.com/sanik4144/resume_analyzer_frontend",
     },
+    {
+      title: "SlideSpark",
+      description:
+        "SlideSpark helps students easily find and manage slides for their academic courses across various departments. Whether you're in CSE, EEE, SWE or NFE, this app ensures that your study resources are just a tap away.",
+      image: "/portfolio/slidespark.png",
+      techStack: ["Flutter", "Firebase", "Google Sign-In", "Cloud Firestore", "Firebase Storage"],
+      liveUrl: "https://play.google.com/store/apps/details?id=com.SparkStudio.slideSpark",
+      githubUrl: "https://github.com/sanik4144/SlideSpark-App",
+      credentials: [
+        {
+          role: "User",
+          userid: "You cannot access unless you are a student of Daffodil International University",
+          password: "Has to google Sign-In with a valid DIU email",
+        },
+      ],
+    },
   ] satisfies Project[],
   achievements: [
     "Meta Front-End Developer Professional Certificate",
