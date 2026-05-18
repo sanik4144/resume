@@ -86,8 +86,8 @@ export function PortfolioPage() {
         <SectionWrapper
           id="research-works"
           kicker="Research Works"
-          title="Research & Technical Exploration"
-          intro="Research-focused work, technical writing, and applied software exploration presented as compact project cards."
+          title="Research Exploration"
+          intro="Research-focused work, technical writing, and applied software exploration"
         >
           <div className="grid gap-6 lg:grid-cols-3">
             {portfolioData.researchWorks.map((researchWork, index) => (

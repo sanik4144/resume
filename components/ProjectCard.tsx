@@ -2,33 +2,56 @@
 
 import type { Project } from "@/lib/portfolio-data";
 import { AnimatePresence, motion } from "framer-motion";
-import { ExternalLink, KeyRound, X } from "lucide-react";
+import { Download, ExternalLink, FileText, KeyRound, X } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { SocialIcon } from "react-social-icons";
 
 export function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [showCredentials, setShowCredentials] = useState(false);
+  const [showPaperDetails, setShowPaperDetails] = useState(false);
   const hasCredentials = Boolean(project.credentials?.length);
-  const hasActions = Boolean(project.liveUrl || project.githubUrl || hasCredentials);
-  const actionCount = [project.liveUrl, project.githubUrl, hasCredentials].filter(Boolean).length;
+  const hasPaperDetails = Boolean(
+    project.paperDetails &&
+      Object.values(project.paperDetails).some((value) =>
+        Array.isArray(value) ? value.length > 0 : Boolean(value),
+      ),
+  );
+  const hasActions = Boolean(
+    project.liveUrl || project.githubUrl || hasCredentials || hasPaperDetails,
+  );
+  const actionCount = [
+    project.liveUrl,
+    project.githubUrl,
+    hasCredentials,
+    hasPaperDetails,
+  ].filter(Boolean).length;
   const actionGridClass =
     actionCount === 1
       ? "grid-cols-1"
-      : actionCount === 2
+      : actionCount === 2 || actionCount === 4
         ? "grid-cols-2"
         : "grid-cols-3";
 
   useEffect(() => {
-    if (!showCredentials) return;
+    if (!showCredentials && !showPaperDetails) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setShowCredentials(false);
+      if (event.key === "Escape") {
+        setShowCredentials(false);
+        setShowPaperDetails(false);
+      }
     };
 
     document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [showCredentials]);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [showCredentials, showPaperDetails]);
 
   return (
     <>
@@ -113,6 +136,17 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
                   <KeyRound className="h-5 w-5" />
                 </button>
               ) : null}
+              {hasPaperDetails ? (
+                <button
+                  type="button"
+                  onClick={() => setShowPaperDetails(true)}
+                  aria-label={`${project.title} paper details`}
+                  title="Paper details"
+                  className="focus-ring inline-flex min-h-12 items-center justify-center rounded-full border border-sky-500/30 bg-sky-600/10 px-4 py-3 text-sky-800 transition hover:-translate-y-0.5 hover:border-sky-500/60 hover:bg-sky-600/15 dark:border-sky-300/25 dark:bg-sky-300/10 dark:text-sky-100 dark:hover:bg-sky-300/15"
+                >
+                  <FileText className="h-5 w-5" />
+                </button>
+              ) : null}
             </div>
           ) : null}
         </div>
@@ -120,7 +154,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
       <AnimatePresence>
         {showCredentials && project.credentials ? (
           <motion.div
-            className="fixed inset-0 z-[80] flex items-end justify-center bg-slate-950/55 px-4 py-5 backdrop-blur-sm sm:items-center sm:p-6"
+            className="fixed inset-0 z-[100] flex items-end justify-center overflow-hidden bg-slate-950/55 px-4 py-5 backdrop-blur-sm sm:items-center sm:p-8"
             role="dialog"
             aria-modal="true"
             aria-labelledby={`${project.title}-credentials-title`}
@@ -130,7 +164,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             onClick={() => setShowCredentials(false)}
           >
             <motion.div
-              className="glass-panel max-h-[88vh] w-full max-w-2xl overflow-y-auto rounded-[28px] p-5 shadow-2xl shadow-slate-950/25 sm:p-7"
+              className="glass-panel max-h-[76vh] w-full max-w-2xl overscroll-contain overflow-y-auto rounded-[28px] p-5 shadow-2xl shadow-slate-950/25 sm:max-h-[78vh] sm:p-7"
               initial={{ opacity: 0, y: 28, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 18, scale: 0.98 }}
@@ -190,6 +224,114 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
           </motion.div>
         ) : null}
       </AnimatePresence>
+      <AnimatePresence>
+        {showPaperDetails && project.paperDetails ? (
+          <motion.div
+            className="fixed inset-0 z-[100] flex items-end justify-center overflow-hidden bg-slate-950/55 px-4 py-5 backdrop-blur-sm sm:items-center sm:p-8"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={`${project.title}-paper-title`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowPaperDetails(false)}
+          >
+            <motion.div
+              className="glass-panel max-h-[76vh] w-full max-w-3xl overscroll-contain overflow-y-auto rounded-[28px] p-5 shadow-2xl shadow-slate-950/25 sm:max-h-[78vh] sm:p-7"
+              initial={{ opacity: 0, y: 28, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 18, scale: 0.98 }}
+              transition={{ duration: 0.22 }}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="section-kicker">Research Paper</p>
+                  <h3
+                    id={`${project.title}-paper-title`}
+                    className="mt-2 font-display text-2xl font-semibold text-slate-950 dark:text-white sm:text-3xl"
+                  >
+                    {project.paperDetails.paperName || project.title}
+                  </h3>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowPaperDetails(false)}
+                  className="focus-ring grid h-11 w-11 shrink-0 place-items-center rounded-full border border-slate-950/10 bg-white/70 text-slate-700 transition hover:-translate-y-0.5 hover:text-slate-950 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:text-white"
+                  aria-label="Close paper details"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              <dl className="mt-6 grid gap-3 sm:grid-cols-2">
+                <PaperDetailItem label="DOI" value={project.paperDetails.doi} />
+                <PaperDetailItem
+                  label="Conference Year"
+                  value={project.paperDetails.conferenceYear}
+                />
+                <PaperDetailItem
+                  label="Conference Name"
+                  value={project.paperDetails.conferenceName}
+                  className="sm:col-span-2"
+                />
+                <PaperDetailItem
+                  label="Authors"
+                  value={project.paperDetails.authors?.join(", ")}
+                  className="sm:col-span-2"
+                />
+              </dl>
+
+              {project.paperDetails.abstract ? (
+                <div className="mt-5 rounded-3xl border border-slate-950/10 bg-white/60 p-4 dark:border-white/10 dark:bg-white/5 sm:p-5">
+                  <p className="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+                    Abstract
+                  </p>
+                  <p className="mt-3 text-justify leading-7 text-slate-700 dark:text-slate-200">
+                    {project.paperDetails.abstract}
+                  </p>
+                </div>
+              ) : null}
+
+              {project.paperDetails.paperUrl ? (
+                <a
+                  href={project.paperDetails.paperUrl}
+                  download
+                  className="focus-ring mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-teal-700 dark:bg-white dark:text-slate-950 dark:hover:bg-teal-200"
+                >
+                  <Download className="h-4 w-4" />
+                  Download Paper
+                </a>
+              ) : null}
+            </motion.div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </>
+  );
+}
+
+function PaperDetailItem({
+  label,
+  value,
+  className = "",
+}: {
+  label: string;
+  value?: string;
+  className?: string;
+}) {
+  if (!value) return null;
+
+  return (
+    <div
+      className={`min-w-0 rounded-2xl bg-slate-950/5 p-3 dark:bg-white/10 ${className}`}
+    >
+      <dt className="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+        {label}
+      </dt>
+      <dd className="mt-1 break-words font-semibold text-slate-800 dark:text-slate-100">
+        {value}
+      </dd>
+    </div>
   );
 }

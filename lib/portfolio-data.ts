@@ -25,12 +25,23 @@ export type Project = {
   liveUrl: string;
   githubUrl: string;
   credentials?: ProjectCredential[];
+  paperDetails?: ProjectPaperDetails;
 };
 
 export type ProjectCredential = {
   role: string;
   userid: string;
   password: string;
+};
+
+export type ProjectPaperDetails = {
+  doi?: string;
+  paperName?: string;
+  conferenceName?: string;
+  conferenceYear?: string;
+  authors?: string[];
+  abstract?: string;
+  paperUrl?: string;
 };
 
 export const portfolioData = {
@@ -64,61 +75,34 @@ export const portfolioData = {
     { label: "Research", href: "#research-works" },
     { label: "Contact", href: "#contact" },
   ] satisfies NavItem[],
-  education: [
+
+  experience: [
     {
-      title: "B.Sc. in Computer Science and Engineering",
-      organization: "Daffodil International University",
-      period: "2022 - 2025",
+      title: "Junior Full Stack Developer",
+      organization: "Bangladesh Rice Research Institute",
+      period: "May 2026 - Present",
       description:
-        "Relevant Courses: Data Structures & Algorithm, Web Dev, Databases, Software Engineering, OOP",
+        "Building internal product dashboards and customer-facing workflows for a fast-moving software team.",
       highlights: [
-        "Graduated with strong project portfolio",
-        "Built capstone SaaS dashboard with React and Node.js",
-        "Led peer coding sessions for JavaScript fundamentals",
+        "Improved dashboard load times by 42% through route-level optimization",
+        "Created reusable React components that reduced duplicate UI code",
+        "Integrated role-based access control and audit-friendly API endpoints",
       ],
     },
     {
-      title: "HSC in Science",
-      organization: "Dhaka College",
-      period: "2018 - 2020",
+      title: "Instructor, Algorithm",
+      organization: "Q-Bit Learning",
+      period: "Jul 2024 - Jul 2025",
       description:
-        "Relevant Courses: Data Structures & Algorithm, Web Dev, Databases, Software Engineering, OOP",
+        "Conducted lectures on programming and computer science fundamentals for undergraduate-level students",
       highlights: [
-        "Graduated with strong project portfolio",
-        "Built capstone SaaS dashboard with React and Node.js",
-        "Led peer coding sessions for JavaScript fundamentals",
+        "Delivered 50+ hours of structured instruction to 100+ students",
+        "Designed quizzes, mock labs, and assessments to evaluate student learning",
+        "Mentored students on academic and real-world projects"
       ],
     },
   ] satisfies TimelineItem[],
-  researchWorks: [
-    {
-      title: "Applied Software Research",
-      description:
-        "Research-focused engineering work around practical software systems, data workflows, and digital tools for institutional operations at Bangladesh Rice Research Institute.",
-      image: "/portfolio/lms.png",
-      techStack: ["Research", "Dashboards", "Data Workflows", "Internal Tools"],
-      liveUrl: "",
-      githubUrl: "",
-    },
-    {
-      title: "Academic Research & Technical Writing",
-      description:
-        "Academic research practice connected to computer science coursework, project documentation, literature review, and software engineering analysis.",
-      image: "/portfolio/resume_analyzer.png",
-      techStack: ["Literature Review", "Problem Framing", "Technical Reports"],
-      liveUrl: "",
-      githubUrl: "",
-    },
-    {
-      title: "Software Requirements Analysis",
-      description:
-        "Explored requirement gathering, implementation trade-offs, and structured documentation for project-based academic evaluation.",
-      image: "/portfolio/materials.png",
-      techStack: ["Requirements", "Documentation", "Software Engineering"],
-      liveUrl: "",
-      githubUrl: "",
-    },
-  ] satisfies Project[],
+
   skills: [
     {
       category: "Frontend",
@@ -151,32 +135,7 @@ export const portfolioData = {
       skills: ["Problem-solving", "Communication", "Teamwork", "Version Control"],
     },
   ] satisfies SkillGroup[],
-  experience: [
-    {
-      title: "Junior Full Stack Developer",
-      organization: "Bangladesh Rice Research Institute",
-      period: "May 2026 - Present",
-      description:
-        "Building internal product dashboards and customer-facing workflows for a fast-moving software team.",
-      highlights: [
-        "Improved dashboard load times by 42% through route-level optimization",
-        "Created reusable React components that reduced duplicate UI code",
-        "Integrated role-based access control and audit-friendly API endpoints",
-      ],
-    },
-    {
-      title: "Instructor, Algorithm",
-      organization: "Q-Bit Learning",
-      period: "Jul 2024 - Jul 2025",
-      description:
-        "Conducted lectures on programming and computer science fundamentals for undergraduate-level students",
-      highlights: [
-        "Delivered 50+ hours of structured instruction to 100+ students",
-        "Designed quizzes, mock labs, and assessments to evaluate student learning",
-        "Mentored students on academic and real-world projects"
-      ],
-    },
-  ] satisfies TimelineItem[],
+
   projects: [
     {
       title: "Quix",
@@ -239,6 +198,107 @@ export const portfolioData = {
       ],
     },
   ] satisfies Project[],
+
+  education: [
+    {
+      title: "B.Sc. in Computer Science and Engineering",
+      organization: "Daffodil International University",
+      period: "2022 - 2025",
+      description:
+        "Relevant Courses: Data Structures & Algorithm, Web Dev, Databases, Software Engineering, OOP",
+      highlights: [
+        "Graduated with strong project portfolio",
+        "Built capstone SaaS dashboard with React and Node.js",
+        "Led peer coding sessions for JavaScript fundamentals",
+      ],
+    },
+    {
+      title: "HSC in Science",
+      organization: "Dhaka College",
+      period: "2018 - 2020",
+      description:
+        "Relevant Courses: Data Structures & Algorithm, Web Dev, Databases, Software Engineering, OOP",
+      highlights: [
+        "Graduated with strong project portfolio",
+        "Built capstone SaaS dashboard with React and Node.js",
+        "Led peer coding sessions for JavaScript fundamentals",
+      ],
+    },
+  ] satisfies TimelineItem[],
+
+  researchWorks: [
+    {
+      title: "A Speech Driven Framework For Identifying Low Resourced Ethnic Languages of Bangladesh",
+      description:
+        "2nd International Conference on Quantum Photonics, Artificial Intelligence, and Networking (QPAIN - 2025)",
+      image: "/portfolio/materials.png",
+      techStack: ["Requirements", "Documentation", "Software Engineering"],
+      liveUrl: "",
+      githubUrl: "",
+      paperDetails: {
+        doi: "",
+        paperName: "A Speech Driven Framework For Identifying Low Resourced Ethnic Languages of Bangladesh",
+        conferenceName:
+          "2nd International Conference on Quantum Photonics, Artificial Intelligence, and Networking (QPAIN)",
+        conferenceYear: "2025",
+        authors: [
+          "Saifullah Anik",
+          "Nusrat Jahan",
+          "Md. Rakib Hasan",
+          "Dr. Farhana Rahman",
+        ],
+        abstract:
+          "This demo paper presents a speech-driven framework for identifying low-resourced ethnic languages of Bangladesh from short audio samples. The proposed workflow combines audio preprocessing, feature extraction, and lightweight classification to support language documentation and inclusive digital services for communities with limited annotated speech resources.",
+        paperUrl: "/papers/speech-driven-framework-demo.pdf",
+      },
+    },
+    {
+      title: "Behavioral Data-Driven Prediction of Suicide Risk Using Machine Learning Approaches",
+      description:
+        "(International Conference on Intelligent Data Analysis and Applications [IDAA 2025])",
+      image: "/portfolio/lms.png",
+      techStack: ["Research", "Dashboards", "Data Workflows", "Internal Tools"],
+      liveUrl: "",
+      githubUrl: "",
+    },
+    {
+      title: "Applying Convolutional Neural Networks for Early Multi-Class Detection of Lemon Leaf Diseases: A Comparative Analysis",
+      description:
+        "(1st International Conference on Smart Agriculture and Sustainable Development [ICSASD2026])",
+      image: "/portfolio/resume_analyzer.png",
+      techStack: ["Literature Review", "Problem Framing", "Technical Reports"],
+      liveUrl: "",
+      githubUrl: "",
+    },
+    {
+      title: "Early Multi-Class Disease Detection in Chili Plant Leaves Using Convolutional Neural Networks: A Comparative Study",
+      description:
+        "(8th International Conference on Sustainable Development-ICSD 2026)",
+      image: "/portfolio/materials.png",
+      techStack: ["Requirements", "Documentation", "Software Engineering"],
+      liveUrl: "",
+      githubUrl: "",
+    },
+    {
+      title: "Community Response to Early Warning System: An Empirical Study on Action Delay and Risk Perception",
+      description:
+        "(8th International Conference on Sustainable Development-ICSD 2026)",
+      image: "/portfolio/materials.png",
+      techStack: ["Requirements", "Documentation", "Software Engineering"],
+      liveUrl: "",
+      githubUrl: "",
+    },
+    {
+      title: "Early Detection of Sesame Leaf Diseases Using Convolutional Neural Networks",
+      description:
+        "(8th International Conference on Sustainable Development-ICSD 2026)",
+      image: "/portfolio/materials.png",
+      techStack: ["Requirements", "Documentation", "Software Engineering"],
+      liveUrl: "",
+      githubUrl: "",
+    },
+  ] satisfies Project[],
+
   achievements: [
     "Meta Front-End Developer Professional Certificate",
     "AWS Cloud Practitioner Essentials",
