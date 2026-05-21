@@ -1,3 +1,6 @@
+import { time } from "console";
+import { format } from "path/win32";
+
 export type NavItem = {
   label: string;
   href: string;
@@ -231,8 +234,8 @@ export const portfolioData = {
       title: "A Speech Driven Framework For Identifying Low Resourced Ethnic Languages of Bangladesh",
       description:
         "2nd International Conference on Quantum Photonics, Artificial Intelligence, and Networking (QPAIN - 2025)",
-      image: "/portfolio/materials.png",
-      techStack: ["Requirements", "Documentation", "Software Engineering"],
+      image: "/portfolio/demopaper.png",
+      techStack: [],
       liveUrl: "",
       githubUrl: "",
       paperDetails: {
@@ -243,48 +246,86 @@ export const portfolioData = {
         conferenceYear: "2025",
         authors: [
           "Saifullah Anik",
-          "Nusrat Jahan",
-          "Md. Rakib Hasan",
-          "Dr. Farhana Rahman",
+          "Md. Obydul Hossain",
+          "Md. Shakib Ahammed",
+          "Gourab Kumar Pranta",
+          "Abdus Sattar"
         ],
         abstract:
-          "This demo paper presents a speech-driven framework for identifying low-resourced ethnic languages of Bangladesh from short audio samples. The proposed workflow combines audio preprocessing, feature extraction, and lightweight classification to support language documentation and inclusive digital services for communities with limited annotated speech resources.",
-        paperUrl: "/papers/speech-driven-framework-demo.pdf",
+          "The ethnic languages with limited resources are not well represented in the field of computational speech, which makes it challenging to implement into the new technology. This study introduces a speech-based machine-learning system to detect 3 low-resource ethnic languages of Bangladesh that are Chakma, Marma and Garo. A collection of 2,321 audio samples of different native speakers was gathered, reading translated versions of 211 sentences in Bangali. The samples were checked to be linguistically correct and they were normalized in WAV format. Noise, silence, normalization and Mel Frequency Cepstral Coefficient (MFCC) extraction were performed as the prepro-cessing steps to obtain the consistent feature representationsthat can be used in machine-learning analysis. Through MFCC that can be used in machine-learning analysis. Through MFCC features, a set of classical machine-learning models, Support Vector Machine (SVM), Logistic Regression, Random Forest and K-Nearest Neighbors, were trained. The accuracy of the SVM and Random Forest models were the highest, with both models obtaining accuracy of 99.35%, whereas the accuracy of the Logistic Regression and KNN is 99.14% and 98.92% respectively. These good findings indicate that classical machine- learning approaches can be used to reasonably well learn the acoustic patterns of the differences between Chakma, Garo, and Marma, even with a relatively small dataset. In order to improve interpretability, SHAP (SHapley Additive exPlanations) was used on the SVM and the Random Forest models. SHAP outcome indicated that the most valuable features in all models were mfcc5mean, and the MFCCmean category was the most significant. On the whole, the results support the possibility of constructing an effective and explainable system of language- identification of low-resourced Bangladeshi languages with the help of classical machine learning. The future research consists of dataset expansion, deep-learning implementation, as well as real-time deployment to further digital inclusion and language preservation.",
+        paperUrl: "/papers/paper1.pdf",
       },
     },
     {
       title: "Behavioral Data-Driven Prediction of Suicide Risk Using Machine Learning Approaches",
       description:
-        "(International Conference on Intelligent Data Analysis and Applications [IDAA 2025])",
-      image: "/portfolio/lms.png",
-      techStack: ["Research", "Dashboards", "Data Workflows", "Internal Tools"],
+        "International Conference on Intelligent Data Analysis and Applications (IDAA 2025)",
+      image: "/portfolio/paperimage2.png",
+      techStack: [],
       liveUrl: "",
       githubUrl: "",
+      paperDetails: {
+        doi: "",
+        paperName: "Behavioral Data-Driven Prediction of Suicide Risk Using Machine Learning Approaches",
+        conferenceName:
+          "International Conference on Intelligent Data Analysis and Applications (IDAA 2025)",
+        conferenceYear: "2025",
+        authors: [
+          "Salman Af Rahman",
+          "Saifullah Anik",
+          "Radoanul Arifen",
+          "Md. Shakib Ahammed",
+          "S.M. Meriyan Islam",
+          "M. Humayet Islam"
+        ],
+        abstract:
+          "Suicide is a major global health issue, and identifying those at risk early can help prevent it. Our research aims to develop a model that predicts suicidal tenden- cies using a dataset of 1,128 records from hospitals in Bangladesh, including Dhaka Medical College, BIRDEM, and other institutions, with additional data sourced from GitHub. The dataset includes 16 factors like age, gender, sleep disorders, past suicide attempts, mental illnesses, and mood conditions. Data cleaning, missing value processing, label encoding, and feature standardization were applied for consistency. Four machine learning models—Logistic Regression, Random Forest, Support Vector Machine (SVM ), and XGBoost—were tested, with Random Forest and XGBoost achieving the highest accuracy of 98.14%. These results highlight how machine learning, particularly ensemble models, can detect subtle patterns in behavioral data, helping mental health professionals identify at-risk individuals before it's too late.",
+        paperUrl: "/papers/paper2.pdf",
+      },
     },
     {
       title: "Applying Convolutional Neural Networks for Early Multi-Class Detection of Lemon Leaf Diseases: A Comparative Analysis",
       description:
         "(1st International Conference on Smart Agriculture and Sustainable Development [ICSASD2026])",
-      image: "/portfolio/resume_analyzer.png",
-      techStack: ["Literature Review", "Problem Framing", "Technical Reports"],
+      image: "/portfolio/demopaper.png",
+      techStack: [],
       liveUrl: "",
       githubUrl: "",
     },
     {
       title: "Early Multi-Class Disease Detection in Chili Plant Leaves Using Convolutional Neural Networks: A Comparative Study",
       description:
-        "(8th International Conference on Sustainable Development-ICSD 2026)",
-      image: "/portfolio/materials.png",
-      techStack: ["Requirements", "Documentation", "Software Engineering"],
+        "8th International Conference on Sustainable Development (ICSD 2026)",
+      image: "/portfolio/paperimage4.png",
+      techStack: [],
       liveUrl: "",
       githubUrl: "",
+      paperDetails: {
+        doi: "",
+        paperName: "Early Multi-Class Disease Detection in Chili Plant Leaves Using Convolutional Neural Networks: A Comparative Study",
+        conferenceName:
+          "8th International Conference on Sustainable Development (ICSD 2026)",
+        conferenceYear: "2026",
+        authors: [
+          "Radoanul Arifen",
+          "S.M. Meriyan Islam",
+          "Rakibul Hasan",
+          "Apurba Saha",
+          "S. M. Jabbaruzzaman",
+          "Anisa Azad",
+          "Saifullah Anik"
+        ],
+        abstract:
+          "Chili is an important economic and nutritional crop with a relatively limited availability of different disease-resistant varieties. Leaf diseases, including those caused by fungi, bacteria, viruses, pests, or nutritional deficiencies, significantly compromise production and crop quality. Early detection of these diseases is key to reducing yield loss; however, traditional visual examinations are limited by time constraints, human subjectivity, and low detection sensitivity at early stages of infection. To overcome these challenges, this study proposes a deep learning based framework for early multi-class detection of chili leaf diseases using convolutional neural networks (CNNs). A real-field dataset comprising 16,392 high-resolution images of chili leaves across six disease and healthy classes was collected from multiple regions of Bangladesh. The dataset was preprocessed, augmented, and split into training and validation sets using an 80:20 ratio. Five pre-trained CNN architectures—DenseNet121, EfficientNetB3, MobileNetV2, ResNet50, and InceptionV3 were evaluated using a transfer learning strategy. Experimental results demonstrate that MobileNetV2 achieved the best performance, attaining an overall classification accuracy of 96%. The results indicate that the proposed system demonstrates strong generalization capability and effectively discriminates visually similar chili leaf diseases. This work can be considered a valuable application in precision agriculture, providing an efficient, automated, and practical approach for in situ early diagnosis of chili leaf diseases through smart farm management.",
+        paperUrl: "/papers/paper4.pdf",
+      },
     },
     {
       title: "Community Response to Early Warning System: An Empirical Study on Action Delay and Risk Perception",
       description:
         "(8th International Conference on Sustainable Development-ICSD 2026)",
-      image: "/portfolio/materials.png",
-      techStack: ["Requirements", "Documentation", "Software Engineering"],
+      image: "/portfolio/demopaper.png",
+      techStack: [],
       liveUrl: "",
       githubUrl: "",
     },
@@ -292,8 +333,8 @@ export const portfolioData = {
       title: "Early Detection of Sesame Leaf Diseases Using Convolutional Neural Networks",
       description:
         "(8th International Conference on Sustainable Development-ICSD 2026)",
-      image: "/portfolio/materials.png",
-      techStack: ["Requirements", "Documentation", "Software Engineering"],
+      image: "/portfolio/demopaper.png",
+      techStack: [],
       liveUrl: "",
       githubUrl: "",
     },
